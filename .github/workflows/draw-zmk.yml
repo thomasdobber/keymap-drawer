@@ -51,12 +51,12 @@ on:
         type: boolean
       install_branch:
         description: 'Install keymap-drawer from a git branch, use empty for pypi release (default)'
-        default: ''
+        default: 'main'
         required: false
         type: string
       install_repo:
         description: 'Install keymap-drawer from a different git remote, primarily for testing changes using a keymap-drawer fork. Ignored if `install_branch` is unset/empty.'
-        default: 'https://github.com/caksoylar/keymap-drawer.git'
+        default: 'https://github.com/thomasdobber/keymap-drawer.git'
         required: false
         type: string
       destination:
@@ -96,9 +96,9 @@ jobs:
           fetch-depth: ${{ (inputs.amend_commit == true && 2) || 1 }}
           submodules: recursive
 
-      - name: Install keymap-drawer (pypi)
-        if: inputs.install_branch == ''
-        run: pipx install keymap-drawer
+      # - name: Install keymap-drawer (pypi)
+      #   if: inputs.install_branch == ''
+      #   run: pipx install keymap-drawer
 
       - name: Install keymap-drawer (git)
         if: inputs.install_branch != ''
